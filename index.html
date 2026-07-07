@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Science PYQ Quiz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            overflow: hidden;
+        }
+
+        .quiz-header {
+            background-color: #1a237e;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .quiz-body {
+            padding: 30px;
+        }
+
+        h2.question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul.options-list {
+            list-style-type: none;
+        }
+
+        ul.options-list li {
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            display: block;
+            background-color: #e8eaf6;
+            padding: 12px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .option-label:hover {
+            background-color: #c5cae9;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .submit-btn {
+            background-color: #ffb300;
+            color: #fff;
+            border: none;
+            display: block;
+            width: 100%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff8f00;
+        }
+
+        .result-container {
+            text-align: center;
+            display: none;
+        }
+
+        .result-container h2 {
+            font-size: 1.5rem;
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+
+        .reload-btn {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .reload-btn:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-header">
+            <h2 id="header-title">Mega Science PYQ Quiz</h2>
+            <p id="question-tracker">Question 1 of 150</p>
+        </div>
+        
+        <div class="quiz-body" id="quiz">
+            <h2 class="question-text" id="question">Question text goes here</h2>
+            <ul class="options-list">
+                <li>
+                    <label class="option-label" for="a">
+                        <input type="radio" name="answer" id="a" class="answer">
+                        <span id="a_text">Option A</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="option-label" for="b">
+                        <input type="radio" name="answer" id="b" class="answer">
+                        <span id="b_text">Option B</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="option-label" for="c">
+                        <input type="radio" name="answer" id="c" class="answer">
+                        <span id="c_text">Option C</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="option-label" for="d">
+                        <input type="radio" name="answer" id="d" class="answer">
+                        <span id="d_text">Option D</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="quiz-body result-container" id="result">
+            <h2 id="score-text">You answered correctly at 0/150 questions.</h2>
+            <button class="reload-btn" onclick="location.reload()">Restart Quiz</button>
+        </div>
+
+        <button class="submit-btn" id="submit">Next Question</button>
+    </div>
+
+    <script>
+        const quizData = [
+            // ---------------- MEASURING INSTRUMENTS ----------------
+            { question: "Which instrument measures Altitude in aircraft?", a: "Altimeter", b: "Ammeter", c: "Barometer", d: "Fathometer", correct: "a" },
+            { question: "What does an Ammeter measure?", a: "Voltage", b: "Electric Current", c: "Resistance", d: "Power", correct: "b" },
+            { question: "Which instrument measures Wind Speed & Direction?", a: "Anemometer", b: "Hygrometer", c: "Odometer", d: "Pyrometer", correct: "a" },
+            { question: "Atmospheric Pressure is measured by:", a: "Sphygmomanometer", b: "Barometer", c: "Calorimeter", d: "Lactometer", correct: "b" },
+            { question: "Calorimeter is used to measure:", a: "Quantity of Heat", b: "Temperature", c: "Light Intensity", d: "Sound", correct: "a" },
+            { question: "Which instrument measures Plant Growth?", a: "Seismograph", b: "Crescograph", c: "Fathometer", d: "Hygrometer", correct: "b" },
+            { question: "Ocean Depth is measured using:", a: "Barometer", b: "Lactometer", c: "Fathometer", d: "Altimeter", correct: "c" },
+            { question: "Hydrometer measures the:", a: "Humidity in air", b: "Liquid Specific Gravity", c: "Water purity", d: "Ocean depth", correct: "b" },
+            { question: "Which instrument measures Humidity?", a: "Hydrometer", b: "Hygrometer", c: "Calorimeter", d: "Pyrometer", correct: "b" },
+            { question: "Purity of Milk is measured by:", a: "Lactometer", b: "Barometer", c: "Sphygmomanometer", d: "Crescograph", correct: "a" },
+            { question: "Distance covered by a vehicle is measured by:", a: "Speedometer", b: "Odometer", c: "Anemometer", d: "Altimeter", correct: "b" },
+            { question: "Pyrometer is used to measure:", a: "Low temperatures", b: "Very High Temperatures", c: "Atmospheric pressure", d: "Earthquakes", correct: "b" },
+            { question: "Earthquake intensity is measured by:", a: "Seismograph", b: "Fathometer", c: "Crescograph", d: "Barometer", correct: "a" },
+            { question: "Blood Pressure is measured by:", a: "Sphygmomanometer", b: "Pyrometer", c: "Hygrometer", d: "Ammeter", correct: "a" },
+            { question: "Specific gravity and relative density of liquids is measured by:", a: "Hygrometer", b: "Hydrometer", c: "Lactometer", d: "Fathometer", correct: "b" },
+
+            // ---------------- WORK, ENERGY & POWER ----------------
+            { question: "Work is a:", a: "Vector quantity", b: "Scalar quantity", c: "Tensor quantity", d: "None", correct: "b" },
+            { question: "What is the SI unit of Work?", a: "Watt", b: "Newton", c: "Joule", d: "Pascal", correct: "c" },
+            { question: "What is the CGS unit of Work?", a: "Joule", b: "Erg", c: "Dyne", d: "Watt", correct: "b" },
+            { question: "1 Joule is equal to how many Ergs?", a: "10^5 Erg", b: "10^7 Erg", c: "10^9 Erg", d: "10^3 Erg", correct: "b" },
+            { question: "The formula for Work is:", a: "W = F * d * sin θ", b: "W = F * d * cos θ", c: "W = m * a", d: "W = 1/2 mv^2", correct: "b" },
+            { question: "Work is positive when the angle (θ) is:", a: "90° to 180°", b: "Exactly 90°", c: "0° to < 90°", d: "Exactly 180°", correct: "c" },
+            { question: "Work done by a freely falling body is an example of:", a: "Zero work", b: "Positive work", c: "Negative work", d: "Infinite work", correct: "b" },
+            { question: "Work done by brakes applied on a train is an example of:", a: "Positive work", b: "Negative work", c: "Zero work", d: "No work", correct: "b" },
+            { question: "If a coolie carries a load on his head and moves horizontally, work done against gravity is:", a: "Maximum", b: "Positive", c: "Negative", d: "Zero", correct: "d" },
+            { question: "In circular motion, work done by centripetal force is:", a: "Positive", b: "Negative", c: "Zero", d: "Maximum", correct: "c" },
+            { question: "What is the formula for Kinetic Energy?", a: "mgh", b: "1/2 mv^2", c: "F * d", d: "ma", correct: "b" },
+            { question: "If momentum doubles, Kinetic Energy becomes:", a: "2x", b: "3x", c: "4x", d: "8x", correct: "c" },
+            { question: "What is the formula for Potential Energy?", a: "1/2 mv^2", b: "mgh", c: "p^2/2m", d: "W/t", correct: "b" },
+            { question: "Power is defined as:", a: "Work x Time", b: "Force x Distance", c: "Work / Time", d: "Mass x Acceleration", correct: "c" },
+            { question: "1 Horsepower (HP) equals:", a: "1000 W", b: "746 W", c: "3.6x10^6 W", d: "500 W", correct: "b" },
+
+            // ---------------- SKELETAL SYSTEM ----------------
+            { question: "An adult human has how many bones?", a: "270", b: "206", c: "300", d: "126", correct: "b" },
+            { question: "A newborn baby has about how many bones?", a: "206", b: "150", c: "270", d: "350", correct: "c" },
+            { question: "Yellow marrow stores:", a: "Red blood cells", b: "Calcium", c: "Fat", d: "Proteins", correct: "c" },
+            { question: "How many bones are in the Axial Skeleton?", a: "126", b: "80", c: "22", d: "60", correct: "b" },
+            { question: "How many bones are in the Appendicular Skeleton?", a: "80", b: "126", c: "60", d: "206", correct: "b" },
+            { question: "Total bones in the human skull are:", a: "14", b: "8", c: "22", d: "26", correct: "c" },
+            { question: "How many pairs of ribs do humans have?", a: "10 pairs", b: "12 pairs", c: "14 pairs", d: "24 pairs", correct: "b" },
+            { question: "The only movable bone in the skull is:", a: "Maxilla", b: "Mandible", c: "Hyoid", d: "Temporal", correct: "b" },
+            { question: "Which is the longest bone in the human body?", a: "Humerus", b: "Tibia", c: "Femur", d: "Radius", correct: "c" },
+            { question: "Which is the smallest bone in the human body?", a: "Stapes", b: "Incus", c: "Malleus", d: "Hyoid", correct: "a" },
+            { question: "Bone without any joint in the body is:", a: "Mandible", b: "Patella", c: "Hyoid bone", d: "Sternum", correct: "c" },
+            { question: "Which vitamin is essential for bones?", a: "Vitamin A", b: "Vitamin C", c: "Vitamin D", d: "Vitamin K", correct: "c" },
+            { question: "The largest joint in the body is:", a: "Hip joint", b: "Knee joint", c: "Shoulder joint", d: "Elbow joint", correct: "b" },
+            { question: "Bone marrow produces:", a: "Fat", b: "Calcium", c: "Blood cells", d: "Minerals", correct: "c" },
+            { question: "How many pairs of floating ribs are there?", a: "1 pair", b: "2 pairs", c: "3 pairs", d: "7 pairs", correct: "b" },
+            { question: "Total vertebrae in an adult spine is:", a: "33", b: "26", c: "24", d: "12", correct: "b" },
+            { question: "The study of bones is called:", a: "Arthrology", b: "Osteology", c: "Myology", d: "Neurology", correct: "b" },
+            { question: "Bone-forming cells are called:", a: "Osteoclasts", b: "Osteoblasts", c: "Chondrocytes", d: "Erythrocytes", correct: "b" },
+            { question: "Joint inflammation is called:", a: "Osteoporosis", b: "Arthritis", c: "Rickets", d: "Scoliosis", correct: "b" },
+            { question: "Cranial bones are how many in number?", a: "14", b: "8", c: "22", d: "6", correct: "b" },
+
+            // ---------------- ACIDS ----------------
+            { question: "Acids produce which ions in an aqueous solution?", a: "OH- ions", b: "H+ ions", c: "Na+ ions", d: "Cl- ions", correct: "b" },
+            { question: "Acids turn blue litmus to:", a: "Green", b: "Yellow", c: "Red", d: "No change", correct: "c" },
+            { question: "What is the pH range of acids?", a: "Greater than 7", b: "Exactly 7", c: "Less than 7", d: "0 to 14", correct: "c" },
+            { question: "Which acid is found in Vinegar?", a: "Citric acid", b: "Acetic acid", c: "Formic acid", d: "Lactic acid", correct: "b" },
+            { question: "Which acid is found in Citrus fruits (Lemon)?", a: "Lactic acid", b: "Citric acid", c: "Oxalic acid", d: "Ascorbic acid", correct: "b" },
+            { question: "Curd (sour milk) contains which acid?", a: "Lactic acid", b: "Tartaric acid", c: "Formic acid", d: "Acetic acid", correct: "a" },
+            { question: "Tamarind contains which acid?", a: "Citric acid", b: "Ascorbic acid", c: "Tartaric acid", d: "Oxalic acid", correct: "c" },
+            { question: "Ant sting contains which acid?", a: "Acetic acid", b: "Formic acid", c: "Oxalic acid", d: "Lactic acid", correct: "b" },
+            { question: "Tomato and spinach contain which acid?", a: "Oxalic acid", b: "Citric acid", c: "Tartaric acid", d: "Ascorbic acid", correct: "a" },
+            { question: "Reaction of Acid with Metal produces which gas?", a: "Oxygen", b: "Carbon dioxide", c: "Hydrogen", d: "Nitrogen", correct: "c" },
+            { question: "Reaction of Acid with Base to form salt and water is called:", a: "Oxidation", b: "Reduction", c: "Neutralization", d: "Crystallization", correct: "c" },
+            { question: "Reaction of Acid with Carbonates produces which gas?", a: "Hydrogen", b: "Carbon dioxide", c: "Oxygen", d: "Chlorine", correct: "b" },
+            { question: "Which is a Strong Acid?", a: "Acetic acid", b: "Carbonic acid", c: "Hydrochloric acid (HCl)", d: "Phosphoric acid", correct: "c" },
+            { question: "Which acid is used in car batteries?", a: "Nitric acid", b: "Hydrochloric acid", c: "Sulphuric acid", d: "Acetic acid", correct: "c" },
+            { question: "Which acid is present in our stomach for digestion?", a: "Sulphuric acid", b: "Hydrochloric acid", c: "Nitric acid", d: "Lactic acid", correct: "b" },
+
+            // ---------------- VITAMINS ----------------
+            { question: "Which of the following is a Fat-Soluble Vitamin?", a: "Vitamin B1", b: "Vitamin C", c: "Vitamin A", d: "Vitamin B12", correct: "c" },
+            { question: "Scientific name of Vitamin A is:", a: "Calciferol", b: "Retinol", c: "Tocopherol", d: "Thiamine", correct: "b" },
+            { question: "Deficiency of Vitamin A causes:", a: "Rickets", b: "Scurvy", c: "Night Blindness", d: "Beriberi", correct: "c" },
+            { question: "Scientific name of Vitamin D is:", a: "Retinol", b: "Calciferol", c: "Phylloquinone", d: "Ascorbic Acid", correct: "b" },
+            { question: "Deficiency of Vitamin D in children causes:", a: "Scurvy", b: "Rickets", c: "Pellagra", d: "Beriberi", correct: "b" },
+            { question: "Tocopherol is the scientific name for:", a: "Vitamin A", b: "Vitamin E", c: "Vitamin K", d: "Vitamin B2", correct: "b" },
+            { question: "Which vitamin helps in blood clotting?", a: "Vitamin A", b: "Vitamin D", c: "Vitamin E", d: "Vitamin K", correct: "d" },
+            { question: "Phylloquinone is the scientific name for:", a: "Vitamin K", b: "Vitamin C", c: "Vitamin B12", d: "Vitamin B6", correct: "a" },
+            { question: "Which of the following is a Water-Soluble Vitamin?", a: "Vitamin A", b: "Vitamin D", c: "Vitamin C", d: "Vitamin K", correct: "c" },
+            { question: "Ascorbic Acid is the scientific name of:", a: "Vitamin B1", b: "Vitamin C", c: "Vitamin D", d: "Vitamin E", correct: "b" },
+            { question: "Deficiency of Vitamin C causes:", a: "Beriberi", b: "Rickets", c: "Scurvy", d: "Night blindness", correct: "c" },
+            { question: "Thiamine is the scientific name for:", a: "Vitamin B1", b: "Vitamin B2", c: "Vitamin B3", d: "Vitamin B12", correct: "a" },
+            { question: "Deficiency of Vitamin B1 (Thiamine) causes:", a: "Scurvy", b: "Beriberi", c: "Pellagra", d: "Anemia", correct: "b" },
+            { question: "Cobalamin is the scientific name for:", a: "Vitamin B6", b: "Vitamin B9", c: "Vitamin B12", d: "Vitamin B3", correct: "c" },
+            { question: "Biotin is the scientific name for:", a: "Vitamin B5", b: "Vitamin B6", c: "Vitamin B7", d: "Vitamin B9", correct: "c" },
+
+            // ---------------- POWER ----------------
+            { question: "Power is the RATE at which:", a: "Work is done", b: "Force is applied", c: "Velocity changes", d: "Momentum changes", correct: "a" },
+            { question: "What is the SI unit of Power?", a: "Joule", b: "Watt", c: "Erg", d: "Newton", correct: "b" },
+            { question: "1 Watt is equal to:", a: "1 J/s", b: "1 N m", c: "1 Erg/s", d: "1 kg m/s", correct: "a" },
+            { question: "1 Kilowatt-hour (kWh) equals:", a: "746 Watts", b: "3.6 x 10^6 Joules", c: "1000 Joules", d: "3600 Watts", correct: "b" },
+            { question: "Formula for power in terms of Force and Velocity is:", a: "P = F/v", b: "P = Fv", c: "P = W/t", d: "P = ma", correct: "b" },
+            { question: "Slope of 'Work Done vs. Time' graph gives:", a: "Force", b: "Momentum", c: "Power", d: "Energy", correct: "c" },
+            { question: "If an object's velocity doubles, its power (assuming constant force) becomes:", a: "Half", b: "Same", c: "2x", d: "4x", correct: "c" },
+            { question: "If a 60kg man climbs a 6m height in 40s (g=10), his power is:", a: "3600W", b: "90W", c: "600W", d: "240W", correct: "b" },
+            { question: "Is Power a scalar or vector quantity?", a: "Scalar", b: "Vector", c: "Tensor", d: "Dimensionless", correct: "a" },
+            { question: "Commercial unit of electrical energy is:", a: "Watt", b: "Kilowatt", c: "Kilowatt-hour", d: "Joule/second", correct: "c" },
+
+            // ---------------- BASES ----------------
+            { question: "Bases produce which ions in water?", a: "H+ ions", b: "OH- ions", c: "Na+ ions", d: "Cl- ions", correct: "b" },
+            { question: "Bases turn red litmus to:", a: "Blue", b: "Green", c: "Yellow", d: "No change", correct: "a" },
+            { question: "Taste of bases is:", a: "Sour", b: "Sweet", c: "Bitter", d: "Salty", correct: "c" },
+            { question: "What is the pH of bases?", a: "Less than 7", b: "Exactly 7", c: "Greater than 7", d: "0", correct: "c" },
+            { question: "An alkali is a base that is:", a: "Insoluble in water", b: "Soluble in water", c: "Acidic in nature", d: "Neutral", correct: "b" },
+            { question: "Formula for Sodium hydroxide is:", a: "KOH", b: "Ca(OH)2", c: "NaOH", d: "Mg(OH)2", correct: "c" },
+            { question: "Reaction of Base with Acid is called:", a: "Neutralization", b: "Oxidation", c: "Reduction", d: "Combustion", correct: "a" },
+            { question: "Phenolphthalein turns which color in basic solution?", a: "Colourless", b: "Red", c: "Pink", d: "Yellow", correct: "c" },
+            { question: "Methyl orange turns which color in basic solution?", a: "Red", b: "Yellow", c: "Pink", d: "Colourless", correct: "b" },
+            { question: "Turmeric indicator turns which color in basic solution?", a: "Yellow", b: "Reddish brown", c: "Green", d: "Blue", correct: "b" },
+            { question: "Which of these is a Weak Base?", a: "NaOH", b: "KOH", c: "Ca(OH)2", d: "NH4OH", correct: "d" },
+            { question: "Sodium hydroxide (NaOH) is used in the manufacture of:", a: "Antacids", b: "Soaps", c: "Fertilizers", d: "Food", correct: "b" },
+            { ques
