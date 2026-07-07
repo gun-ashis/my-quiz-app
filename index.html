@@ -3,336 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Science PYQ Quiz</title>
+    <title>Science PYQ Quiz (Pro)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            color: #1f2937;
-        }
-
-        .quiz-container {
-            background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 600px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            background-color: #e5e7eb;
-            height: 6px;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #4f46e5, #7c3aed);
-            width: 0%;
-            transition: width 0.4s ease;
-        }
-
-        .quiz-header {
-            padding: 40px 30px 20px;
-            text-align: center;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .quiz-header h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .tracker {
-            font-size: 0.9rem;
-            color: #6b7280;
-            font-weight: 600;
-        }
-
-        .quiz-body {
-            padding: 30px;
-        }
-
-        h2.question-text {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            color: #374151;
-        }
-
-        ul.options-list {
-            list-style-type: none;
-        }
-
-        ul.options-list li {
-            margin-bottom: 12px;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            background-color: #f9fafb;
-            border: 2px solid #e5e7eb;
-            padding: 15px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        .option-label:hover {
-            background-color: #f3f4f6;
-            border-color: #d1d5db;
-        }
-
-        /* Highlight selected option */
-        input[type="radio"]:checked + span {
-            font-weight: 600;
-            color: #4f46e5;
-        }
-        
-        .option-label:has(input[type="radio"]:checked) {
-            border-color: #4f46e5;
-            background-color: #eef2ff;
-        }
-
-        input[type="radio"] {
-            margin-right: 15px;
-            accent-color: #4f46e5;
-            transform: scale(1.3);
-            cursor: pointer;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #4f46e5, #6366f1);
-            color: #fff;
-            border: none;
-            display: block;
-            width: calc(100% - 60px);
-            margin: 0 auto 30px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 16px;
-            border-radius: 12px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
-        }
-
-        .result-container {
-            text-align: center;
-            display: none;
-            padding: 40px 30px;
-        }
-
-        .result-container h2 {
-            font-size: 1.8rem;
-            color: #111827;
-            margin-bottom: 10px;
-        }
-        
-        .result-container p {
-            font-size: 1.1rem;
-            color: #6b7280;
-            margin-bottom: 30px;
-        }
-
-        .reload-btn {
-            background-color: #10b981;
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-        }
-
-        .reload-btn:hover {
-            background-color: #059669;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #1f2937; }
+        .quiz-container { background-color: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: 100%; max-width: 600px; overflow: hidden; position: relative; }
+        .progress-container { width: 100%; background-color: #e5e7eb; height: 6px; position: absolute; top: 0; left: 0; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #4f46e5, #7c3aed); width: 0%; transition: width 0.4s ease; }
+        .quiz-header { padding: 40px 30px 20px; text-align: center; border-bottom: 1px solid #f3f4f6; }
+        .quiz-header h2 { font-size: 1.4rem; font-weight: 700; color: #111827; margin-bottom: 8px; }
+        .tracker { font-size: 0.9rem; color: #6b7280; font-weight: 600; }
+        .quiz-body { padding: 30px; }
+        h2.question-text { font-size: 1.15rem; font-weight: 600; margin-bottom: 25px; line-height: 1.5; color: #374151; }
+        ul.options-list { list-style-type: none; }
+        ul.options-list li { margin-bottom: 12px; }
+        .option-label { display: flex; align-items: center; background-color: #f9fafb; border: 2px solid #e5e7eb; padding: 15px 20px; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; font-size: 1rem; font-weight: 400; }
+        .option-label:hover { background-color: #f3f4f6; border-color: #d1d5db; }
+        input[type="radio"]:checked + span { font-weight: 600; color: #4f46e5; }
+        .option-label:has(input[type="radio"]:checked) { border-color: #4f46e5; background-color: #eef2ff; }
+        input[type="radio"] { margin-right: 15px; accent-color: #4f46e5; transform: scale(1.3); cursor: pointer; }
+        .submit-btn { background: linear-gradient(135deg, #4f46e5, #6366f1); color: #fff; border: none; display: block; width: calc(100% - 60px); margin: 0 auto 30px; cursor: pointer; font-size: 1.1rem; font-weight: 600; padding: 16px; border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4); }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5); }
+        .result-container { text-align: center; display: none; padding: 40px 30px; }
+        .result-container h2 { font-size: 1.8rem; color: #111827; margin-bottom: 10px; }
+        .result-container p { font-size: 1.1rem; color: #6b7280; margin-bottom: 30px; }
+        .reload-btn { background-color: #10b981; color: #fff; border: none; padding: 15px 30px; border-radius: 12px; cursor: pointer; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); }
     </style>
 </head>
 <body>
-
     <div class="quiz-container" id="quiz-container">
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-        </div>
-
+        <div class="progress-container"><div class="progress-bar" id="progress-bar"></div></div>
         <div class="quiz-header" id="quiz-header">
-            <h2 id="header-title">Mega Science PYQ Quiz</h2>
-            <p class="tracker" id="question-tracker">Question 1 of 150</p>
+            <h2 id="header-title">Science PYQ Quiz</h2>
+            <p class="tracker" id="question-tracker">Question 1 of 20</p>
         </div>
-        
         <div class="quiz-body" id="quiz">
             <h2 class="question-text" id="question">Question text goes here</h2>
             <ul class="options-list">
-                <li>
-                    <label class="option-label" for="a">
-                        <input type="radio" name="answer" id="a" class="answer">
-                        <span id="a_text">Option A</span>
-                    </label>
-                </li>
-                <li>
-                    <label class="option-label" for="b">
-                        <input type="radio" name="answer" id="b" class="answer">
-                        <span id="b_text">Option B</span>
-                    </label>
-                </li>
-                <li>
-                    <label class="option-label" for="c">
-                        <input type="radio" name="answer" id="c" class="answer">
-                        <span id="c_text">Option C</span>
-                    </label>
-                </li>
-                <li>
-                    <label class="option-label" for="d">
-                        <input type="radio" name="answer" id="d" class="answer">
-                        <span id="d_text">Option D</span>
-                    </label>
-                </li>
+                <li><label class="option-label" for="a"><input type="radio" name="answer" id="a" class="answer"><span id="a_text">Option A</span></label></li>
+                <li><label class="option-label" for="b"><input type="radio" name="answer" id="b" class="answer"><span id="b_text">Option B</span></label></li>
+                <li><label class="option-label" for="c"><input type="radio" name="answer" id="c" class="answer"><span id="c_text">Option C</span></label></li>
+                <li><label class="option-label" for="d"><input type="radio" name="answer" id="d" class="answer"><span id="d_text">Option D</span></label></li>
             </ul>
         </div>
-        
         <div class="result-container" id="result">
             <h2>Quiz Completed! 🎉</h2>
-            <p id="score-text">You answered correctly at 0/150 questions.</p>
+            <p id="score-text"></p>
             <button class="reload-btn" onclick="location.reload()">Restart Quiz</button>
         </div>
-
         <button class="submit-btn" id="submit">Next Question</button>
     </div>
 
     <script>
         const quizData = [
-            // ---------------- MEASURING INSTRUMENTS ----------------
-            { question: "Which instrument measures Altitude in aircraft?", a: "Altimeter", b: "Ammeter", c: "Barometer", d: "Fathometer", correct: "a" },
-            { question: "What does an Ammeter measure?", a: "Voltage", b: "Electric Current", c: "Resistance", d: "Power", correct: "b" },
-            { question: "Which instrument measures Wind Speed & Direction?", a: "Anemometer", b: "Hygrometer", c: "Odometer", d: "Pyrometer", correct: "a" },
-            { question: "Atmospheric Pressure is measured by:", a: "Sphygmomanometer", b: "Barometer", c: "Calorimeter", d: "Lactometer", correct: "b" },
-            { question: "Calorimeter is used to measure:", a: "Quantity of Heat", b: "Temperature", c: "Light Intensity", d: "Sound", correct: "a" },
-            { question: "Which instrument measures Plant Growth?", a: "Seismograph", b: "Crescograph", c: "Fathometer", d: "Hygrometer", correct: "b" },
-            { question: "Ocean Depth is measured using:", a: "Barometer", b: "Lactometer", c: "Fathometer", d: "Altimeter", correct: "c" },
-            { question: "Hydrometer measures the:", a: "Humidity in air", b: "Liquid Specific Gravity", c: "Water purity", d: "Ocean depth", correct: "b" },
-            { question: "Which instrument measures Humidity?", a: "Hydrometer", b: "Hygrometer", c: "Calorimeter", d: "Pyrometer", correct: "b" },
-            { question: "Purity of Milk is measured by:", a: "Lactometer", b: "Barometer", c: "Sphygmomanometer", d: "Crescograph", correct: "a" },
-            { question: "Distance covered by a vehicle is measured by:", a: "Speedometer", b: "Odometer", c: "Anemometer", d: "Altimeter", correct: "b" },
-            { question: "Pyrometer is used to measure:", a: "Low temperatures", b: "Very High Temperatures", c: "Atmospheric pressure", d: "Earthquakes", correct: "b" },
-            { question: "Earthquake intensity is measured by:", a: "Seismograph", b: "Fathometer", c: "Crescograph", d: "Barometer", correct: "a" },
-            { question: "Blood Pressure is measured by:", a: "Sphygmomanometer", b: "Pyrometer", c: "Hygrometer", d: "Ammeter", correct: "a" },
-            { question: "Specific gravity and relative density of liquids is measured by:", a: "Hygrometer", b: "Hydrometer", c: "Lactometer", d: "Fathometer", correct: "b" },
-
-            // ---------------- WORK, ENERGY & POWER ----------------
-            { question: "Work is a:", a: "Vector quantity", b: "Scalar quantity", c: "Tensor quantity", d: "None", correct: "b" },
+            { question: "Which instrument measures Atmospheric Pressure?", a: "Altimeter", b: "Barometer", c: "Anemometer", d: "Hygrometer", correct: "b" },
+            { question: "What does a Lactometer measure?", a: "Humidity", b: "Ocean Depth", c: "Purity of Milk", d: "Wind Speed", correct: "c" },
             { question: "What is the SI unit of Work?", a: "Watt", b: "Newton", c: "Joule", d: "Pascal", correct: "c" },
-            { question: "What is the CGS unit of Work?", a: "Joule", b: "Erg", c: "Dyne", d: "Watt", correct: "b" },
-            { question: "1 Joule is equal to how many Ergs?", a: "10^5 Erg", b: "10^7 Erg", c: "10^9 Erg", d: "10^3 Erg", correct: "b" },
-            { question: "The formula for Work is:", a: "W = F * d * sin θ", b: "W = F * d * cos θ", c: "W = m * a", d: "W = 1/2 mv^2", correct: "b" },
-            { question: "Work is positive when the angle (θ) is:", a: "90° to 180°", b: "Exactly 90°", c: "0° to < 90°", d: "Exactly 180°", correct: "c" },
-            { question: "Work done by a freely falling body is an example of:", a: "Zero work", b: "Positive work", c: "Negative work", d: "Infinite work", correct: "b" },
-            { question: "Work done by brakes applied on a train is an example of:", a: "Positive work", b: "Negative work", c: "Zero work", d: "No work", correct: "b" },
-            { question: "If a coolie carries a load on his head and moves horizontally, work done against gravity is:", a: "Maximum", b: "Positive", c: "Negative", d: "Zero", correct: "d" },
-            { question: "In circular motion, work done by centripetal force is:", a: "Positive", b: "Negative", c: "Zero", d: "Maximum", correct: "c" },
-            { question: "What is the formula for Kinetic Energy?", a: "mgh", b: "1/2 mv^2", c: "F * d", d: "ma", correct: "b" },
-            { question: "If momentum doubles, Kinetic Energy becomes:", a: "2x", b: "3x", c: "4x", d: "8x", correct: "c" },
-            { question: "What is the formula for Potential Energy?", a: "1/2 mv^2", b: "mgh", c: "p^2/2m", d: "W/t", correct: "b" },
-            { question: "Power is defined as:", a: "Work x Time", b: "Force x Distance", c: "Work / Time", d: "Mass x Acceleration", correct: "c" },
-            { question: "1 Horsepower (HP) equals:", a: "1000 W", b: "746 W", c: "3.6x10^6 W", d: "500 W", correct: "b" },
-
-            // ---------------- SKELETAL SYSTEM ----------------
-            { question: "An adult human has how many bones?", a: "270", b: "206", c: "300", d: "126", correct: "b" },
-            { question: "A newborn baby has about how many bones?", a: "206", b: "150", c: "270", d: "350", correct: "c" },
-            { question: "Yellow marrow stores:", a: "Red blood cells", b: "Calcium", c: "Fat", d: "Proteins", correct: "c" },
-            { question: "How many bones are in the Axial Skeleton?", a: "126", b: "80", c: "22", d: "60", correct: "b" },
-            { question: "How many bones are in the Appendicular Skeleton?", a: "80", b: "126", c: "60", d: "206", correct: "b" },
-            { question: "Total bones in the human skull are:", a: "14", b: "8", c: "22", d: "26", correct: "c" },
-            { question: "How many pairs of ribs do humans have?", a: "10 pairs", b: "12 pairs", c: "14 pairs", d: "24 pairs", correct: "b" },
-            { question: "The only movable bone in the skull is:", a: "Maxilla", b: "Mandible", c: "Hyoid", d: "Temporal", correct: "b" },
-            { question: "Which is the longest bone in the human body?", a: "Humerus", b: "Tibia", c: "Femur", d: "Radius", correct: "c" },
-            { question: "Which is the smallest bone in the human body?", a: "Stapes", b: "Incus", c: "Malleus", d: "Hyoid", correct: "a" },
-            { question: "Bone without any joint in the body is:", a: "Mandible", b: "Patella", c: "Hyoid bone", d: "Sternum", correct: "c" },
-            { question: "Which vitamin is essential for bones?", a: "Vitamin A", b: "Vitamin C", c: "Vitamin D", d: "Vitamin K", correct: "c" },
-            { question: "The largest joint in the body is:", a: "Hip joint", b: "Knee joint", c: "Shoulder joint", d: "Elbow joint", correct: "b" },
-            { question: "Bone marrow produces:", a: "Fat", b: "Calcium", c: "Blood cells", d: "Minerals", correct: "c" },
-            { question: "How many pairs of floating ribs are there?", a: "1 pair", b: "2 pairs", c: "3 pairs", d: "7 pairs", correct: "b" },
-            { question: "Total vertebrae in an adult spine is:", a: "33", b: "26", c: "24", d: "12", correct: "b" },
-            { question: "The study of bones is called:", a: "Arthrology", b: "Osteology", c: "Myology", d: "Neurology", correct: "b" },
-            { question: "Bone-forming cells are called:", a: "Osteoclasts", b: "Osteoblasts", c: "Chondrocytes", d: "Erythrocytes", correct: "b" },
-            { question: "Joint inflammation is called:", a: "Osteoporosis", b: "Arthritis", c: "Rickets", d: "Scoliosis", correct: "b" },
-            { question: "Cranial bones are how many in number?", a: "14", b: "8", c: "22", d: "6", correct: "b" },
-
-            // ---------------- ACIDS ----------------
-            { question: "Acids produce which ions in an aqueous solution?", a: "OH- ions", b: "H+ ions", c: "Na+ ions", d: "Cl- ions", correct: "b" },
+            { question: "1 Horsepower (HP) is equal to:", a: "1000 W", b: "500 W", c: "746 W", d: "3600 W", correct: "c" },
+            { question: "How many bones are there in an adult human body?", a: "206", b: "270", c: "300", d: "126", correct: "a" },
+            { question: "Which is the longest bone in the human body?", a: "Humerus", b: "Femur", c: "Tibia", d: "Radius", correct: "b" },
             { question: "Acids turn blue litmus to:", a: "Green", b: "Yellow", c: "Red", d: "No change", correct: "c" },
-            { question: "What is the pH range of acids?", a: "Greater than 7", b: "Exactly 7", c: "Less than 7", d: "0 to 14", correct: "c" },
-            { question: "Which acid is found in Vinegar?", a: "Citric acid", b: "Acetic acid", c: "Formic acid", d: "Lactic acid", correct: "b" },
-            { question: "Which acid is found in Citrus fruits (Lemon)?", a: "Lactic acid", b: "Citric acid", c: "Oxalic acid", d: "Ascorbic acid", correct: "b" },
-            { question: "Curd (sour milk) contains which acid?", a: "Lactic acid", b: "Tartaric acid", c: "Formic acid", d: "Acetic acid", correct: "a" },
-            { question: "Tamarind contains which acid?", a: "Citric acid", b: "Ascorbic acid", c: "Tartaric acid", d: "Oxalic acid", correct: "c" },
-            { question: "Ant sting contains which acid?", a: "Acetic acid", b: "Formic acid", c: "Oxalic acid", d: "Lactic acid", correct: "b" },
-            { question: "Tomato and spinach contain which acid?", a: "Oxalic acid", b: "Citric acid", c: "Tartaric acid", d: "Ascorbic acid", correct: "a" },
-            { question: "Reaction of Acid with Metal produces which gas?", a: "Oxygen", b: "Carbon dioxide", c: "Hydrogen", d: "Nitrogen", correct: "c" },
-            { question: "Reaction of Acid with Base to form salt and water is called:", a: "Oxidation", b: "Reduction", c: "Neutralization", d: "Crystallization", correct: "c" },
-            { question: "Reaction of Acid with Carbonates produces which gas?", a: "Hydrogen", b: "Carbon dioxide", c: "Oxygen", d: "Chlorine", correct: "b" },
-            { question: "Which is a Strong Acid?", a: "Acetic acid", b: "Carbonic acid", c: "Hydrochloric acid (HCl)", d: "Phosphoric acid", correct: "c" },
-            { question: "Which acid is used in car batteries?", a: "Nitric acid", b: "Hydrochloric acid", c: "Sulphuric acid", d: "Acetic acid", correct: "c" },
             { question: "Which acid is present in our stomach for digestion?", a: "Sulphuric acid", b: "Hydrochloric acid", c: "Nitric acid", d: "Lactic acid", correct: "b" },
-
-            // ---------------- VITAMINS ----------------
-            { question: "Which of the following is a Fat-Soluble Vitamin?", a: "Vitamin B1", b: "Vitamin C", c: "Vitamin A", d: "Vitamin B12", correct: "c" },
-            { question: "Scientific name of Vitamin A is:", a: "Calciferol", b: "Retinol", c: "Tocopherol", d: "Thiamine", correct: "b" },
             { question: "Deficiency of Vitamin A causes:", a: "Rickets", b: "Scurvy", c: "Night Blindness", d: "Beriberi", correct: "c" },
-            { question: "Scientific name of Vitamin D is:", a: "Retinol", b: "Calciferol", c: "Phylloquinone", d: "Ascorbic Acid", correct: "b" },
-            { question: "Deficiency of Vitamin D in children causes:", a: "Scurvy", b: "Rickets", c: "Pellagra", d: "Beriberi", correct: "b" },
-            { question: "Tocopherol is the scientific name for:", a: "Vitamin A", b: "Vitamin E", c: "Vitamin K", d: "Vitamin B2", correct: "b" },
-            { question: "Which vitamin helps in blood clotting?", a: "Vitamin A", b: "Vitamin D", c: "Vitamin E", d: "Vitamin K", correct: "d" },
-            { question: "Phylloquinone is the scientific name for:", a: "Vitamin K", b: "Vitamin C", c: "Vitamin B12", d: "Vitamin B6", correct: "a" },
-            { question: "Which of the following is a Water-Soluble Vitamin?", a: "Vitamin A", b: "Vitamin D", c: "Vitamin C", d: "Vitamin K", correct: "c" },
             { question: "Ascorbic Acid is the scientific name of:", a: "Vitamin B1", b: "Vitamin C", c: "Vitamin D", d: "Vitamin E", correct: "b" },
-            { question: "Deficiency of Vitamin C causes:", a: "Beriberi", b: "Rickets", c: "Scurvy", d: "Night blindness", correct: "c" },
-            { question: "Thiamine is the scientific name for:", a: "Vitamin B1", b: "Vitamin B2", c: "Vitamin B3", d: "Vitamin B12", correct: "a" },
-            { question: "Deficiency of Vitamin B1 (Thiamine) causes:", a: "Scurvy", b: "Beriberi", c: "Pellagra", d: "Anemia", correct: "b" },
-            { question: "Cobalamin is the scientific name for:", a: "Vitamin B6", b: "Vitamin B9", c: "Vitamin B12", d: "Vitamin B3", correct: "c" },
-            { question: "Biotin is the scientific name for:", a: "Vitamin B5", b: "Vitamin B6", c: "Vitamin B7", d: "Vitamin B9", correct: "c" },
+            { question: "Bases produce which ions in water?", a: "H+ ions", b: "OH- ions", c: "Na+ ions", d: "Cl- ions", correct: "b" },
+            { question: "What is the pH of basic substances?", a: "Less than 7", b: "Exactly 7", c: "Greater than 7", d: "0", correct: "c" },
+            { question: "Formula of Baking Soda is:", a: "NaCl", b: "Na2CO3", c: "NaHCO3", d: "CaSO4", correct: "c" },
+            { question: "Plaster of Paris (POP) is obtained by heating:", a: "Common salt", b: "Limestone", c: "Gypsum", d: "Marble", correct: "c" },
+            { question: "What is the SI unit of Force?", a: "Joule", b: "Watt", c: "Newton", d: "Pascal", correct: "c" },
+            { question: "Which law is known as the Law of Inertia?", a: "Newton's First Law", b: "Second Law", c: "Third Law", d: "Gravitation Law", correct: "a" },
+            { question: "Which friction is the minimum?", a: "Static friction", b: "Sliding friction", c: "Rolling friction", d: "Limiting friction", correct: "c" },
+            { question: "Which is the hottest planet in the solar system?", a: "Mercury", b: "Venus", c: "Mars", d: "Jupiter", correct: "b" },
+            { question: "Which planet is known as the 'Red Planet'?", a: "Venus", b: "Jupiter", c: "Mars", d: "Saturn", correct: "c" },
+            { question: "The Asteroid belt lies between which two planets?", a: "Earth and Mars", b: "Mars and Jupiter", c: "Jupiter and Saturn", d: "Venus and Earth", correct: "b" }
+        ];
 
-            // ---------------- POWER ----------------
-            { question: "Power is the RATE at which:", a: "Work is done", b: "Force is applied", c: "Velocity changes", d: "Momentum changes", correct: "a" },
-            { question: "What is the SI unit of Power?", a: "Joule", b: "Watt", c: "Erg", d: "Newton", correct: "b" },
-            { question: "1 Watt is equal to:", a: "1 J/s", b: "1 N m", c: "1 Erg/s", d: "1 kg m/s", correct: "a" },
-            { question: "1 Kilowatt-hour (kWh) equals:", a: "746 Watts", b: "3.6 x 10^6 Joules", c: "1000 Joules", d: "3600 Watts", correct: "b" },
-            { question: "Formula for power in terms of Force and Velocity is:", a: "P = F/v", b: "P = Fv", c: "P = W/t", d: "P = ma", correct: "b" },
-            { question: "Slope of 'Work Done vs. Time' graph gives:", a: "Force", b: "Momentum", c: "Power", d: "Energy", correct: "c" },
-            { question: "If an object's velocity doubles, its power (assuming constant force) becomes:", a: "Half", b: "Same", c: "2x", d: "4x", correct: "c" },
-            { question: "If a 60kg man climbs a 6m height in 40s (g=10), his power is:", a: "3600W", b: "90W", c: "600W", d: "240W", correct: "b" },
-            { question: "Is Power a scalar or vector quantity?", a:
+        const quiz = document.getElementById('quiz'), resultContainer = document.getElementById('result');
+        const answerEls = document.querySelectorAll('.answer'), questionEl = document.getElementById('question');
+        const a_text = document.getElementById('a_text'), b_text = document.getElementById('b_text');
+        const c_text = document.getElementById('c_text'), d_text = document.getElementById('d_text');
+        const submitBtn = document.getElementById('submit'), tracker = document.getElementById('question-tracker');
+        const scoreText = document.getElementById('score-text'), progressBar = document.getElementById('progress-bar');
+        const quizHeader = document.getElementById('quiz-header');
+
+        let currentQuiz = 0, score = 0;
+        loadQuiz();
+
+        function loadQuiz() {
+            deselectAnswers();
+            const currentQuizData = quizData[currentQuiz];
+            tracker.innerText = `Question ${currentQuiz + 1} of ${quizData.length}`;
+            progressBar.style.width = `${(currentQuiz / quizData.length) * 100}%`;
+            questionEl.innerText = currentQuizData.question;
+            a_text.innerText = currentQuizData.a; b_text.innerText = currentQuizData.b;
+            c_text.innerText = currentQuizData.c; d_text.innerText = currentQuizData.d;
+        }
+
+        function deselectAnswers() { answerEls.forEach(el => el.checked = false); }
+        function getSelected() { let ans; answerEls.forEach(el => { if(el.checked) ans = el.id; }); return ans; }
+
+        submitBtn.addEventListener('click', () => {
+            const answer = getSelected();
+            if(answer) {
+                if(answer === quizData[currentQuiz].correct) score++;
+                currentQuiz++;
+                if(currentQuiz < quizData.length) { loadQuiz(); } 
+                else {
+                    quiz.style.display = 'none'; quizHeader.style.display = 'none'; submitBtn.style.display = 'none';
+                    progressBar.style.width = '100%'; resultContainer.style.display = 'block';
+                    scoreText.innerHTML = `You answered correctly at <strong>${score}/${quizData.length}</strong> questions!`;
+                }
+            } else alert("Please select an option!");
+        });
+    </script>
+</body>
+</html>
+
